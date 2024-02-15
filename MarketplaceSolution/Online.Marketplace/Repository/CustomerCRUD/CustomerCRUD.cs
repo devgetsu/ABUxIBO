@@ -48,12 +48,12 @@ namespace Online.Marketplace.Repository.CustomerCRUD
             throw new NotImplementedException();
         }
 
-        Customers ICustomerCRUD.GetByID(int id)
+        public Customers GetByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        Customers ICustomerCRUD.Update(int id, CustomersDTO product)
+        public Customers Update(int id, CustomersDTO product)
         {
             throw new NotImplementedException();
         }
