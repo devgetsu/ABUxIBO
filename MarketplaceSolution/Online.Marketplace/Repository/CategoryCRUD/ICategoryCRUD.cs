@@ -1,6 +1,15 @@
-﻿namespace Online.Marketplace.Repository.CategoryCRUD
+﻿using Online.Marketplace.Entities.DTOs;
+using Online.Marketplace.Models;
+
+namespace Online.Marketplace.Repository.CategoryCRUD
 {
-    public class ICategoryCRUD
+    public interface ICategoryCRUD
     {
+        public string Create(CategoryDTO category);
+        public IEnumerable<Category> GetAll();
+
+        public Category GetByID(int id);
+        public string DeleteByID(int id);
+        public Category Update(int id, CategoryDTO category);
     }
 }
