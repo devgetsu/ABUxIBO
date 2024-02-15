@@ -5,10 +5,10 @@ namespace Online.Marketplace.Repository.ShopCRUD
 {
     public interface IShopCRUD
     {
-        public string Create(Shops shop);
+        public string Create(ShopsDTO shop);
         public IEnumerable<Shops> GetAll();
         public Shops GetByID(int id);
         public string DeleteByID(int id);
-        public Shops Update(int id, Shops product);
+        public string Update(int id, ShopsDTO product);
     }
 }
