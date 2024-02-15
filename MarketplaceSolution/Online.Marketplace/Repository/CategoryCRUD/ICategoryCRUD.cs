@@ -10,6 +10,6 @@ namespace Online.Marketplace.Repository.CategoryCRUD
 
         public Category GetByID(int id);
         public string DeleteByID(int id);
-        public Category Update(int id, CategoryDTO category);
+        public string Update(int id, CategoryDTO category);
     }
 }
