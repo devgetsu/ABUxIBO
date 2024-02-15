@@ -12,7 +12,7 @@ namespace Online.Marketplace.Repository.CustomerCRUD
         {
             _config = config;
         }
-        public string ICustomerCRUD.Create(Customers customer)
+        public string Create(Customers customer)
         {
             try
             {
@@ -38,12 +38,12 @@ namespace Online.Marketplace.Repository.CustomerCRUD
             }
         }
 
-        public string ICustomerCRUD.DeleteByID(int id)
+        public string DeleteByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Customers> ICustomerCRUD.GetAll()
+        public IEnumerable<Customers> GetAll()
         {
             throw new NotImplementedException();
         }
