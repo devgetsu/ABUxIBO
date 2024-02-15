@@ -44,7 +44,7 @@ namespace Online.Marketplace.Repository.CustomerCRUD
             {
                 using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
                 {
-                    string query = "delete from products where id = @aydi";
+                    string query = "delete from customer where id = @aydi";
 
                     con.Execute(query, new { aydi = id });
 

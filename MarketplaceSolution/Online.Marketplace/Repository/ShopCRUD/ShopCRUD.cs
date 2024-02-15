@@ -19,7 +19,7 @@ namespace Online.Marketplace.Repository.ShopCRUD
                 using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
                 {
                     string query = "insert into Shops(shop_name) " +
-                        "values(@Shop_Name=name);";
+                        "values(@Shop_Name);";
 
                     ShopsDTO? parameters = new ShopsDTO
                     {
