@@ -19,7 +19,7 @@ namespace Online.Marketplace.Repository.ProductCRUd
                 using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
                 {
                     string query = "insert into products(product_name,price,shop_id,category_id,customer_id) " +
-                        "values(@name,@price,@sh_id,@ct_id,@cs_id);";
+                        "values(@Product_name,@Price,@Shop_id,@Category_id,@Customer_id);";
 
                     var parameters = new ProductDTO
                     {
@@ -98,7 +98,7 @@ namespace Online.Marketplace.Repository.ProductCRUd
             {
                 using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
                 {
-                    string query = "update products set product_name = @name,price = @pr,shop_id = @shp_id,categoy_id = @ct_id,customer_id = @cs_id where id = @aydi";
+                    string query = "update products set product_name = @name,price = @pr,shop_id = @shp_id,category_id = @ct_id,customer_id = @cs_id where id = @aydi";
 
                     con.Execute(query, new {
                         name = product.Product_name,

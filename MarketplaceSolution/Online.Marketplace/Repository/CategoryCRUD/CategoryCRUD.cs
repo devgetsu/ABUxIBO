@@ -19,7 +19,7 @@ namespace Online.Marketplace.Repository.CategoryCRUD
                 using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
                 {
                     string query = "insert into category(category_name) " +
-                        "values(@name);";
+                        "values(@Category_name);";
 
                     var parameters = new CategoryDTO
                     {
