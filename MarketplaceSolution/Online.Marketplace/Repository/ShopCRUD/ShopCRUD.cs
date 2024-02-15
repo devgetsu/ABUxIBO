@@ -4,7 +4,7 @@ namespace Online.Marketplace.Repository.ShopCRUD
 {
     public class ShopCRUD : IShopCRUD
     {
-        public string Create(Shop shop)
+        public string Create(Shops shop)
         {
             throw new NotImplementedException();
         }
@@ -14,17 +14,17 @@ namespace Online.Marketplace.Repository.ShopCRUD
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Shop> GetAll()
+        public IEnumerable<Shops> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Shop GetByID(int id)
+        public Shops GetByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Shop Update(int id, Shop product)
+        public Shops Update(int id, Shops product)
         {
             throw new NotImplementedException();
         }
