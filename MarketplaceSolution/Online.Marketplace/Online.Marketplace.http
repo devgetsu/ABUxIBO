@@ -1,0 +1,6 @@
+@Online.Marketplace_HostAddress = http://localhost:5277
+
+GET {{Online.Marketplace_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
