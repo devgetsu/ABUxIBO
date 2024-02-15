@@ -9,6 +9,6 @@ namespace Online.Marketplace.Repository.CustomerCRUD
         public IEnumerable<Customers> GetAll();
         public Customers GetByID(int id);
         public string DeleteByID(int id);
-        public Customers Update(int id, CustomersDTO product);
+        public string Update(int id, CustomersDTO product);
     }
 }
