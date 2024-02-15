@@ -1,6 +1,6 @@
 ﻿namespace Online.Marketplace.Repository.ProductCRUd
 {
-    public class ProductCRUD
+    public class ProductCRUD : IProductCRUD
     {
     }
 }
