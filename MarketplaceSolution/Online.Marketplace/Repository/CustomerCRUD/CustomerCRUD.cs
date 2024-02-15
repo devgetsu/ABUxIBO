@@ -40,22 +40,77 @@ namespace Online.Marketplace.Repository.CustomerCRUD
 
         public string DeleteByID(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "delete from products where id = @aydi";
+
+                    con.Execute(query, new { aydi = id });
+
+                    return "Succesfully";
+                }
+            }
+            catch
+            {
+                return "ERROR";
+            }
         }
 
         public IEnumerable<Customers> GetAll()
         {
-            throw new NotImplementedException();
+            using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+            {
+                string query = "select * from customer";
+
+                IEnumerable<Customers>? responce = con.Query<Customers>(query);
+
+                return responce;
+            }
         }
 
         public Customers GetByID(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "select * from customer where id = @aydi";
+
+                    List<Customers>? responce = con.Query<Customers>(query, new { aydi = id }).ToList();
+
+                    return responce[0];
+                }
+            }
+            catch
+            {
+                return new Customers() { };
+            }
         }
 
-        public Customers Update(int id, CustomersDTO product)
+        public string Update(int id, CustomersDTO customer)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "update customer set full_name = @full_name,age=@age where id = @aydi";
+
+                    con.Execute(query, new
+                    {
+                        full_name=customer.Full_Name,
+                        age=customer.Age,
+                        aydi = id
+                    });
+
+                    return "Succesfully";
+                }
+            }
+            catch
+            {
+                return "ERROR";
+            }
         }
     }
 }
