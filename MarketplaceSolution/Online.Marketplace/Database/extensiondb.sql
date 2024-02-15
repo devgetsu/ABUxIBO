@@ -1,0 +1,59 @@
+-- CREATE TABLE Shops(
+--     id SERIAL NOT NULL,
+--     shop_name VARCHAR(255) NOT NULL
+-- );
+-- ALTER TABLE
+--     Shops ADD PRIMARY KEY(id);
+-- ALTER TABLE
+--     Shops ADD CONSTRAINT shops_shop_name_unique UNIQUE(shop_name);
+-- CREATE TABLE Products(
+--     id SERIAL NOT NULL,
+--     product_name VARCHAR(255) NOT NULL,
+--     price DECIMAL(8, 2) NOT NULL,
+--     shop_id INTEGER NOT NULL,
+--     category_id INTEGER NOT NULL,
+--     customer_id INTEGER NULL
+-- );
+-- ALTER TABLE
+--     Products ADD PRIMARY KEY(id);
+-- CREATE TABLE Customer(
+--     id SERIAL NOT NULL,
+--     full_name VARCHAR(255) NOT NULL,
+--     age INTEGER NOT NULL
+-- );
+-- ALTER TABLE
+--     Customer ADD PRIMARY KEY(id);
+-- CREATE TABLE Category(
+--     id SERIAL NOT NULL,
+--     category_name VARCHAR(255) NOT NULL
+-- );
+-- ALTER TABLE
+--     Category ADD PRIMARY KEY(id);
+-- ALTER TABLE
+--     Category ADD CONSTRAINT category_category_name_unique UNIQUE(category_name);
+-- ALTER TABLE
+--     Products ADD CONSTRAINT products_customer_id_foreign FOREIGN KEY(customer_id) REFERENCES Customer(id);
+-- ALTER TABLE
+--     Products ADD CONSTRAINT products_shop_id_foreign FOREIGN KEY(shop_id) REFERENCES Shops(id);
+-- ALTER TABLE
+--     Products ADD CONSTRAINT products_category_id_foreign FOREIGN KEY(category_id) REFERENCES Category(id);
+
+-- INSERT INTO Shops (shop_name) VALUES 
+-- ('Fashion World'),
+-- ('Tech Haven'),
+-- ('Green Grocery');
+
+-- INSERT INTO Products (product_name, price, shop_id, category_id, customer_id) VALUES 
+-- ('Trendy T-shirt', 29.99, 4, 1, 1),
+-- ('Smartphone X', 599.99, 6, 2, 2),
+-- ('Organic Apples', 2.49, 5, 3, 3);
+
+-- INSERT INTO Customer (full_name, age) VALUES 
+-- ('Emily Johnson', 30),
+-- ('Michael Brown', 25),
+-- ('Sophia Lee', 40);
+
+-- INSERT INTO Category (category_name) VALUES 
+-- ('Clothing'),
+-- ('Electronics'),
+-- ('Groceries');
