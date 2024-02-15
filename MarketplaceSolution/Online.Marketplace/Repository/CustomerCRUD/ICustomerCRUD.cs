@@ -5,7 +5,7 @@ namespace Online.Marketplace.Repository.CustomerCRUD
 {
     public interface ICustomerCRUD
     {
-        public string Create(Customers customer);
+        public string Create(CustomersDTO customer);
         public IEnumerable<Customers> GetAll();
         public Customers GetByID(int id);
         public string DeleteByID(int id);

@@ -12,7 +12,7 @@ namespace Online.Marketplace.Repository.CustomerCRUD
         {
             _config = config;
         }
-        public string Create(Customers customer)
+        public string Create(CustomersDTO customer)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace Online.Marketplace.Repository.CustomerCRUD
 
                     CustomersDTO? parameters = new CustomersDTO
                     {
-                        Full_Name = customer.full_Name,
+                        Full_Name = customer.Full_Name,
                         Age = customer.Age
                     };
 
