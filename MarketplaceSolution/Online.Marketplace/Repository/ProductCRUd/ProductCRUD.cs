@@ -43,22 +43,79 @@ namespace Online.Marketplace.Repository.ProductCRUd
 
         public string DeleteByID(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "delete from products where id = @aydi";
+
+                    con.Execute(query, new { aydi = id });
+
+                    return "Succesfully";
+                }
+            }
+            catch
+            {
+                return "ERROR";
+            }
         }
 
         public IEnumerable<Product> GetAll()
         {
-            throw new NotImplementedException();
+            using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+            {
+                string query = "select * from products";
+
+                var responce = con.Query<Product>(query);
+
+                return responce;
+            }
         }
 
         public Product GetByID(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "select * from products where id = @aydi";
+
+                    var responce = con.Query<Product>(query, new { aydi = id }).ToList();
+
+                    return responce[0];
+                }
+            }
+            catch
+            {
+                return new Product() { };
+            }
         }
 
-        public Product Update(int id, ProductDTO product)
+        public string Update(int id, ProductDTO product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "update products set product_name = @name,price = @pr,shop_id = @shp_id,categoy_id = @ct_id,customer_id = @cs_id where id = @aydi";
+
+                    con.Execute(query, new {
+                        name = product.Product_name,
+                        pr = product.Price,
+                        shp_id = product.Shop_id,
+                        ct_id = product.Category_id,
+                        cs_id = product.Customer_id,
+                        aydi = id
+                    });
+
+                    return "Succesfully";
+                }
+            }
+            catch
+            {
+                return "ERROR";
+            }
         }
 
     }

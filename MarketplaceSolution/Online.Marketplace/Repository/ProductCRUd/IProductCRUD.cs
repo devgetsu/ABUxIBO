@@ -11,7 +11,7 @@ namespace Online.Marketplace.Repository.ProductCRUd
 
         public Product GetByID(int id);
         public string DeleteByID(int id);
-        public Product Update(int id,ProductDTO product);
+        public string Update(int id,ProductDTO product);
 
     }
 }
