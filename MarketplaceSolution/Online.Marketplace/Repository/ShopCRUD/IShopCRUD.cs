@@ -12,5 +12,5 @@ namespace Online.Marketplace.Repository.ShopCRUD
         public string Update(int id, ShopsDTO product);
     }
 }
-
+ 
 //hello               
