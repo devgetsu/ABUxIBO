@@ -25,7 +25,7 @@ namespace Online.Marketplace.Repository.CategoryCRUD
                     {
                         Category_name = category.Category_name
                     };
-                   
+
                     con.Execute(query, parameters);
 
                     return "Succesfully";
@@ -58,13 +58,21 @@ namespace Online.Marketplace.Repository.CategoryCRUD
 
         public IEnumerable<Category> GetAll()
         {
-            using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+            try
             {
-                string query = "select * from category;";
 
-                var responce = con.Query<Category>(query);
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "select * from category;";
 
-                return responce;
+                    var responce = con.Query<Category>(query);
+
+                    return responce;
+                }
+            }
+            catch
+            {
+                return Enumerable.Empty<Category>();
             }
         }
 

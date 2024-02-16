@@ -1,4 +1,7 @@
 
+using Online.Marketplace.Models;
+using Online.Marketplace.MyServices.IServices;
+using Online.Marketplace.MyServices.Services;
 using Online.Marketplace.Repository.CategoryCRUD;
 using Online.Marketplace.Repository.CustomerCRUD;
 using Online.Marketplace.Repository.ProductCRUd;
@@ -22,6 +25,10 @@ namespace Online.Marketplace
             builder.Services.AddScoped<IShopCRUD, ShopCRUD>();
             builder.Services.AddScoped<ICategoryCRUD, CategoryCRUD>();
             builder.Services.AddScoped<ICustomerCRUD, CustomerCRUD>();
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IShopService, ShopService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
 
             var app = builder.Build();
 

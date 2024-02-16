@@ -56,19 +56,27 @@ namespace Online.Marketplace.Repository.ProductCRUd
             }
             catch
             {
-                return "ERROR";
+                return "This id isn't exists";
             }
         }
 
         public IEnumerable<Product> GetAll()
         {
-            using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+            try
             {
-                string query = "select * from products";
 
-                var responce = con.Query<Product>(query);
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "select * from products";
 
-                return responce;
+                    var responce = con.Query<Product>(query);
+
+                    return responce;
+                }
+            }
+            catch
+            {
+                return Enumerable.Empty<Product>();
             }
         }
 
@@ -100,7 +108,8 @@ namespace Online.Marketplace.Repository.ProductCRUd
                 {
                     string query = "update products set product_name = @name,price = @pr,shop_id = @shp_id,category_id = @ct_id,customer_id = @cs_id where id = @aydi";
 
-                    con.Execute(query, new {
+                    con.Execute(query, new
+                    {
                         name = product.Product_name,
                         pr = product.Price,
                         shp_id = product.Shop_id,

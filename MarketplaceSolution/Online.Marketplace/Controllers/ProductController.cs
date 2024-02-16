@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Online.Marketplace.Entities.DTOs;
 using Online.Marketplace.Models;
+using Online.Marketplace.MyServices.IServices;
 using Online.Marketplace.Repository.ProductCRUd;
 
 namespace Online.Marketplace.Controllers
@@ -10,40 +11,40 @@ namespace Online.Marketplace.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductCRUD _productRepo;
-        public ProductController(IProductCRUD repo)
+        private readonly IProductService _productSer;
+        public ProductController(IProductService ser)
         {
-            _productRepo = repo;
+            _productSer = ser;
         }
 
         [HttpPost]
         public string Create(ProductDTO product)
         {
-            var res = _productRepo.Create(product);
+            string? res = _productSer.Create(product);
             return res;
         }
         [HttpGet]
         public Product GetById(int id)
         {
-            var x = _productRepo.GetByID(id);
+            Product? x = _productSer.GetByID(id);
             return x;
         }
         [HttpGet]
         public IEnumerable<Product> GetAll()
         {
-            var x = _productRepo.GetAll();
+            IEnumerable<Product>? x = _productSer.GetAll();
             return x;
         }
         [HttpDelete]
         public string DeleteById(int id)
         {
-            var x = _productRepo.DeleteByID(id);
+            string? x = _productSer.DeleteByID(id);
             return x;
         }
         [HttpPut]
         public string Update(int id, ProductDTO product)
         {
-            var x = _productRepo.Update(id, product);
+            string? x = _productSer.Update(id, product);
             return x;
         }
 

@@ -58,14 +58,23 @@ namespace Online.Marketplace.Repository.ShopCRUD
 
         public IEnumerable<Shops> GetAll()
         {
-            using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+            try
             {
-                string query = "select * from shops";
 
-                IEnumerable<Shops>? responce = con.Query<Shops>(query);
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "select * from shops";
 
-                return responce;
+                    IEnumerable<Shops>? responce = con.Query<Shops>(query);
+
+                    return responce;
+                }
             }
+            catch
+            {
+                return Enumerable.Empty<Shops>();
+            }
+                
         }
 
         public Shops GetByID(int id)
@@ -98,7 +107,7 @@ namespace Online.Marketplace.Repository.ShopCRUD
 
                     con.Execute(query, new
                     {
-                        shop_name=shops.Shop_Name,
+                        shop_name = shops.Shop_Name,
                         aydi = id
                     });
 

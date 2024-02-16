@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Online.Marketplace.Entities.DTOs;
 using Online.Marketplace.Models;
+using Online.Marketplace.MyServices.IServices;
 using Online.Marketplace.Repository.ShopCRUD;
 
 namespace Online.Marketplace.Controllers
@@ -10,41 +11,41 @@ namespace Online.Marketplace.Controllers
     [ApiController]
     public class ShopController : ControllerBase
     {
-        private readonly IShopCRUD _shopRepo;
+        private readonly IShopService _shopSer;
 
-        public ShopController(IShopCRUD shop)
+        public ShopController(IShopService shop)
         {
-            _shopRepo = shop;
+            _shopSer = shop;
         }
 
         [HttpPost]
         public string Create(ShopsDTO shps)
         {
-            var res = _shopRepo.Create(shps);
+            string? res = _shopSer.Create(shps);
             return res;
         }
         [HttpGet]
         public Shops GetById(int id)
         {
-            var x = _shopRepo.GetByID(id);
+            Shops? x = _shopSer.GetByID(id);
             return x;
         }
         [HttpGet]
         public IEnumerable<Shops> GetAll()
         {
-            var x = _shopRepo.GetAll();
+            IEnumerable<Shops>? x = _shopSer.GetAll();
             return x;
         }
         [HttpDelete]
         public string DeleteById(int id)
         {
-            var x = _shopRepo.DeleteByID(id);
+            string? x = _shopSer.DeleteByID(id);
             return x;
         }
         [HttpPut]
         public string Update(int id, ShopsDTO shops)
         {
-            var x = _shopRepo.Update(id, shops);
+            string? x = _shopSer.Update(id, shops);
             return x;
         }
     }

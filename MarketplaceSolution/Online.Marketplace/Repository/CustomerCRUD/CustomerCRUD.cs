@@ -59,13 +59,21 @@ namespace Online.Marketplace.Repository.CustomerCRUD
 
         public IEnumerable<Customers> GetAll()
         {
-            using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+            try
             {
-                string query = "select * from customer";
 
-                IEnumerable<Customers>? responce = con.Query<Customers>(query);
+                using (NpgsqlConnection con = new NpgsqlConnection(_config.GetConnectionString("Postgres")))
+                {
+                    string query = "select * from customer";
 
-                return responce;
+                    IEnumerable<Customers>? responce = con.Query<Customers>(query);
+
+                    return responce;
+                }
+            }
+            catch
+            {
+                return Enumerable.Empty<Customers>();
             }
         }
 
@@ -99,8 +107,8 @@ namespace Online.Marketplace.Repository.CustomerCRUD
 
                     con.Execute(query, new
                     {
-                        full_name=customer.Full_Name,
-                        age=customer.Age,
+                        full_name = customer.Full_Name,
+                        age = customer.Age,
                         aydi = id
                     });
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Online.Marketplace.Entities.DTOs;
 using Online.Marketplace.Models;
+using Online.Marketplace.MyServices.IServices;
 using Online.Marketplace.Repository.CustomerCRUD;
 using Online.Marketplace.Repository.ShopCRUD;
 
@@ -11,41 +12,41 @@ namespace Online.Marketplace.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly ICustomerCRUD _cusRepo;
+        private readonly ICustomerService _cusSer;
 
-        public CustomerController(ICustomerCRUD cus)
+        public CustomerController(ICustomerService cus)
         {
-            _cusRepo = cus;
+            _cusSer = cus;
         }
 
         [HttpPost]
         public string Create(CustomersDTO cs)
         {
-            var res = _cusRepo.Create(cs);
+            string? res = _cusSer.Create(cs);
             return res;
         }
         [HttpGet]
         public Customers GetById(int id)
         {
-            var x = _cusRepo.GetByID(id);
+            Customers? x = _cusSer.GetByID(id);
             return x;
         }
         [HttpGet]
         public IEnumerable<Customers> GetAll()
         {
-            var x = _cusRepo.GetAll();
+            IEnumerable<Customers>? x = _cusSer.GetAll();
             return x;
         }
         [HttpDelete]
         public string DeleteById(int id)
         {
-            var x = _cusRepo.DeleteByID(id);
+            string? x = _cusSer.DeleteByID(id);
             return x;
         }
         [HttpPut]
         public string Update(int id, CustomersDTO css)
         {
-            var x = _cusRepo.Update(id, css);
+            string? x = _cusSer.Update(id, css);
             return x;
         }
     }
