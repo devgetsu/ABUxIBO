@@ -52,7 +52,7 @@ namespace Online.Marketplace.Repository.CategoryCRUD
             }
             catch
             {
-                return "ERROR";
+                return "ERROR or Relation ";
             }
         }
 
