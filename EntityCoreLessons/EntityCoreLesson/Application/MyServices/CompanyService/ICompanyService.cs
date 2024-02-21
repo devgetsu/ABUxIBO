@@ -9,6 +9,6 @@ namespace EntityCoreLesson.Application.MyServices.CompanyService
         public Task<IEnumerable<Company>> GetAllCompanysAsync();
         public Task<Company> GetCompanyByIdAsync(int id);
         public Task<bool> DeleteCompanyByIdAsync(int id);
-        public Task<string> UpdateCompanyById(int id, CompanyDTO company);
+        public Task<bool> UpdateCompanyById(int id, CompanyDTO company);
     }
 }

@@ -32,9 +32,23 @@ namespace EntityCoreLesson.Application.MyServices.CompanyService
             }
         }
 
-        public Task<bool> DeleteCompanyByIdAsync(int id)
+        public async Task<bool> DeleteCompanyByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var md = await _context.Companys.FirstOrDefaultAsync(x => x.Id == id);
+                if (md != null)
+                {
+                    _context.Companys.Remove(md);
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<IEnumerable<Company>> GetAllCompanysAsync()
@@ -50,14 +64,41 @@ namespace EntityCoreLesson.Application.MyServices.CompanyService
             }
         }
 
-        public Task<Company> GetCompanyByIdAsync(int id)
+        public async Task<Company> GetCompanyByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var md = await _context.Companys.FirstOrDefaultAsync(x => x.Id == id);
+                if (md != null)
+                {
+                    return md;
+                }
+                return new Company() { };
+            }
+            catch
+            {
+                return new Company() { };
+            }
         }
 
-        public Task<string> UpdateCompanyById(int id, CompanyDTO company)
+        public async Task<bool> UpdateCompanyById(int id, CompanyDTO company)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var md = await _context.Companys.FirstOrDefaultAsync(x => x.Id == id);
+                if (md != null)
+                {
+                    md.Name = company.Name;
+                    md.Description = company.Description;
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
